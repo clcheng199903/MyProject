@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatisspring.mapper.TimeZoneMapper">
+    <select id="selectTimeZoneList" resultType="com.example.mybatisspring.domain.TimeZone">
+        select * from timezone
+    </select>
+</mapper>

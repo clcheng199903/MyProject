@@ -1,0 +1,23 @@
+spring:
+  # 相当于配置sqlsession，mybatis可以使用这里的datasource，从而mybatis-config.xml就可以省略了
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://www.clcheng.asia:3306/test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: Ustb@701
+
+
+# 相当于mybatis-config.xml配置，利用datasource配置sqlsession；springboot会自动激活mybatis，或者说自动加载
+# 毕竟xml文件归根到底也是配置文件，这里只是换了个写法
+# 不显式声明也能使用mybatis
+mybatis:
+  configuration:
+    # A_COLUMN数据库字段，可以自动遵循java的驼峰变量命名
+    map-underscore-to-camel-case: true
+  # 对应实体类路径
+  type-aliases-package: com.example.mybatisspring.domain
+  # 对应mapper.xml文件路径
+  mapper-locations: classpath:mapper/*.xml
+
+
+

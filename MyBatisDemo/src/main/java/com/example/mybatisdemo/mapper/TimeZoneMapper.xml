@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- !DOCTYPE 后跟的是当前xml的root dom -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisdemo.mapper.TimeZoneMapper">
+    <select id="selectTimeZoneList" resultType="com.example.mybatisdemo.domain.TimeZone">
+        select * from timezone
+    </select>
+</mapper>
