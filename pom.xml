@@ -12,6 +12,8 @@
     <modules>
         <module>MyBatisDemo</module>
         <module>MyBatisDemo-Spring</module>
+        <module>CallbackDemo</module>
+        <module>ExceptionDemo</module>
     </modules>
 
     <properties>
