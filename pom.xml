@@ -14,6 +14,7 @@
         <module>MyBatisDemo-Spring</module>
         <module>CallbackDemo</module>
         <module>ExceptionDemo</module>
+        <module>ThreadPoolDemo</module>
     </modules>
 
     <properties>
