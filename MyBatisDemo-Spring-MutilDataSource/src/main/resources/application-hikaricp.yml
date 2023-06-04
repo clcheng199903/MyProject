@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    #第一数据源
+    mysql:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://www.clcheng.asia:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&autoReconnect=true
+      type: com.zaxxer.hikari.HikariDataSource
+      username: root
+      password: Ustb@701
+      initialSize: 10
+      maxActive: 2000
+      minIdle: 1
+      maximumPoolSize: 200
+      autoCommit: true
+      poolName: HikariPool_mysql
+      maxLifetime: 1800000
+      connectionTestQuery: SELECT 1
+    #第二数据源
+    sqlserver:
+      driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      jdbcUrl: jdbc:sqlserver://192.168.2.50:1433;DatabaseName=DCCS
+      type: com.zaxxer.hikari.HikariDataSource
+      username: zpjc
+      password: zpjc
+      initialSize: 10
+      maxActive: 2000
+      minIdle: 1
+      maximumPoolSize: 200
+      autoCommit: true
+      poolName: HikariPool_sqlserver
+      maxLifetime: 1800000
+      connectionTestQuery: SELECT 1

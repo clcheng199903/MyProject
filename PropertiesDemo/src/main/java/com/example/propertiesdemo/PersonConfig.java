@@ -1,6 +1,7 @@
 package com.example.propertiesdemo;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -18,11 +19,12 @@ public class PersonConfig {
     private Integer age;
     private String sex;
 
+    @Resource
+    private Person person;
+
     @Bean
-    @ConfigurationProperties
     @ConditionalOnProperty(name = "nation", havingValue = "China")
-    public Person getPerson(Person person) {
-        log.info("person: {}", person);
+    public Person getPerson() {
         return person;
     }
     @PostConstruct
