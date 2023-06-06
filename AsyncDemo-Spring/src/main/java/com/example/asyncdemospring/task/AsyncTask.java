@@ -1,4 +1,4 @@
-package com.example.asyncdemospring;
+package com.example.asyncdemospring.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -11,7 +11,7 @@ import java.util.Arrays;
  * 如果希望获取到异步调用的返回值，需要用Future包装好
  */
 @Slf4j
-@Component
+//@Component
 public class AsyncTask {
 
     /**

@@ -7,10 +7,10 @@ spring:
       type: com.zaxxer.hikari.HikariDataSource
       username: root
       password: Ustb@701
-      initialSize: 10
-      maxActive: 2000
+      initialSize: 5
+      maxActive: 10
       minIdle: 1
-      maximumPoolSize: 200
+      maximumPoolSize: 10
       autoCommit: true
       poolName: HikariPool_mysql
       maxLifetime: 1800000
@@ -18,15 +18,39 @@ spring:
     #第二数据源
     sqlserver:
       driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
-      jdbcUrl: jdbc:sqlserver://192.168.2.50:1433;DatabaseName=DCCS
+      jdbcUrl: jdbc:sqlserver://www.clcheng.asia:1433;DatabaseName=test;trustServerCertificate=true
       type: com.zaxxer.hikari.HikariDataSource
-      username: zpjc
-      password: zpjc
-      initialSize: 10
-      maxActive: 2000
+      username: sa
+      password: Ustb@701
+      initialSize: 1
+      maxActive: 1
       minIdle: 1
-      maximumPoolSize: 200
+      maximumPoolSize: 1
       autoCommit: true
       poolName: HikariPool_sqlserver
       maxLifetime: 1800000
       connectionTestQuery: SELECT 1
+    #第三数据源
+    oracle:
+      driverClassName: oracle.jdbc.OracleDriver
+      jdbcUrl: jdbc:oracle:thin:@www.clcheng.asia:1521:FREE
+      type: com.zaxxer.hikari.HikariDataSource
+      username: system
+      password: Ustb@701
+      initialSize: 1
+      maxActive: 1
+      minIdle: 1
+      maximumPoolSize: 1
+      autoCommit: true
+      poolName: HikariPool_oracle
+      maxLifetime: 1800000
+      connectionTestQuery: SELECT 1 FROM DUAL
+
+#      # 初始连接数
+#      initialSize: 5
+#      # 最小连接池数量
+#      minIdle: 10
+#      # 最大连接池数量
+#      maxActive: 20
+#      # 配置获取连接等待超时的时间
+#      maxWait: 60000

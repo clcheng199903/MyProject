@@ -5,10 +5,10 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * mysql
+ * oracle
  */
 @Data
-public class TimeZone {
+public class Student {
     private Integer id;
     private Date birthday;
 }

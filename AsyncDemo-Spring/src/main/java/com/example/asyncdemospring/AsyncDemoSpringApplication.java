@@ -1,5 +1,6 @@
 package com.example.asyncdemospring;
 
+import com.example.asyncdemospring.task.Task;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import org.springframework.boot.SpringApplication;
@@ -19,25 +20,14 @@ public class AsyncDemoSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AsyncDemoSpringApplication.class, args);
-
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(1);
-        executor.initialize();
-        executor.execute(()-> System.out.println(Thread.currentThread().getName()));
     }
 
     @Resource
-    private AsyncTask task;
+    private Task task;
 
-    /**
-     * @Async开启的线程会在一分钟后自动关闭
-     */
-//    @PostConstruct
-//    public void init() {
-//        for (int i=0; i<5;i++) {
-//            task.taskAsync();
-//            task.task1Async();
-//        }
-//    }
+    @PostConstruct
+    public void init() {
+        task.task1();
+    }
 
 }
