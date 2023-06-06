@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration >
+
+    <!-- 附加器：完成输出日志的任务 -->
+    <!-- 1.控制台：ConsoleAppender -->
+    <!-- 2.文件：FileAppender -->
+    <!-- 3.滚动文件附加器：RollingFileAppender -->
+    <!-- name用于logger进行appender-ref标识，class用于具体的执行输出日志的类（反射） -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <!-- 日志输出格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %red([%10thread]) --- %msg%n</pattern>
+        </encoder>
+        <!-- 过滤器：决定日志是否输出 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+
+        <!-- 阈值过滤器，只有Leve属性，大于等于返回NEUTRAL，小于返回DENY -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <appender name="stdout-colorful" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>
+                %highlight(%date{yyyy-MM-dd HH:mm:ss.SSS}) %cyan([%thread]) %yellow(%-5level) %green(%logger{36}).%gray(%M)-%boldMagenta(%line) - %blue(%msg%n)
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="TRACE">
+        <appender-ref ref="stdout-colorful"/>
+    </root>
+
+    <!-- 记录器：用于创建Logger实例 -->
+    <!-- 追加性：如果父Logger设置了Appender，子Logger打印时也会调用父Logger去打印日志 -->
+    <!-- 设置为True，会继承最近父类的日志级别 -->
+    <logger name="asia.clcheng.Demo" additivity="false">
+        <!-- 附加器引用 -->
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+</configuration>
