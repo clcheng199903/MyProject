@@ -14,8 +14,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * 这些Mapper会自动使用配置好的SqlSession
+ */
 @Slf4j
-@Component
+//@Component
 public class AsyncTask {
     @Resource
     private TimeZoneMapper mysqlMapper;

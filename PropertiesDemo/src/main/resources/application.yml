@@ -7,3 +7,8 @@ person:
   name: ccl
   age: 25
   sex: male
+  nation: China
+  married: false
+
+a-b: 1
+aB: 2

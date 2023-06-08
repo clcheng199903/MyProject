@@ -1,16 +1,15 @@
 package com.example.mybatisdemospringmutildatasource.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
 
-/**
- * mysql
- */
 @Data
-public class TimeZone {
+@AllArgsConstructor
+public class TZ {
     private Integer id;
-    private Date birthday;
+    private String birthday;
     private String A_B;
     private Integer num;
 }

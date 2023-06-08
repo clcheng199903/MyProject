@@ -15,6 +15,7 @@ public class ApplicationProperties {
 
     @PostConstruct
     public void init() {
-        log.info("version: {}", version);
+//        String nation = SpringUtils.getProperty("person.nation");
+//        log.info("version: {}, nation: {}", version, nation);
     }
 }

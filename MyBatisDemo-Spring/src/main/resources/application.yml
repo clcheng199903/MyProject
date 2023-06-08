@@ -16,7 +16,7 @@ mybatis:
     map-underscore-to-camel-case: true
   # 对应实体类路径
   type-aliases-package: com.example.mybatisspring.domain
-  # 对应mapper.xml文件路径
+  # 对应mapper.xml文件路径；但是具体的mapper.java文件需要通过mapperscan注解找到路径
   mapper-locations: classpath:mapper/*.xml
 
 

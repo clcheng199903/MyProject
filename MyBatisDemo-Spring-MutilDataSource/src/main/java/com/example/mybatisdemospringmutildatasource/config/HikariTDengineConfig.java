@@ -21,15 +21,15 @@ import javax.sql.DataSource;
  * 主数据源
  */
 @Configuration
-@MapperScan(basePackages = "com.example.mybatisdemospringmutildatasource.mapper.mysql", sqlSessionFactoryRef = "mysqlSqlSessionFactory")
-public class HikariMysqlConfig {
+@MapperScan(basePackages = "com.example.mybatisdemospringmutildatasource.mapper.tdengine", sqlSessionFactoryRef = "tdengineSqlSessionFactory")
+public class HikariTDengineConfig {
     /**
      * @ConfigurationProperties 读取yml中的配置参数映射成一个对象，并传给new HikariDataSource()做数据源
      */
-    @Bean(name = "mysqlDataSource")
+    @Bean(name = "tdengineDataSource")
     @Primary
-    @ConfigurationProperties(prefix = "spring.datasource.mysql")
-    public HikariDataSource mysqlDataSource() {
+    @ConfigurationProperties(prefix = "spring.datasource.tdengine")
+    public HikariDataSource tdengineDataSource() {
         return new HikariDataSource();
     }
 
@@ -42,9 +42,9 @@ public class HikariMysqlConfig {
      * @return
      */
     // bean也会初始化，所以也有参数注入的过程，通过@Qualifier指定bean类型
-    @Bean(name = "mysqlSqlSessionFactory")
+    @Bean(name = "tdengineSqlSessionFactory")
     @Primary
-    public SqlSessionFactory mysqlSqlSessionFactory(@Qualifier("mysqlDataSource")DataSource dataSource) throws Exception {
+    public SqlSessionFactory tdengineSqlSessionFactory(@Qualifier("tdengineDataSource")DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
 
@@ -59,7 +59,7 @@ public class HikariMysqlConfig {
 
         // 单路径扫描
         // mapper-locations，mybatis扫描mapper.xml所在位置
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/mysql/*.xml"));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/tdengine/*.xml"));
         return bean.getObject();
     }
 
@@ -70,9 +70,9 @@ public class HikariMysqlConfig {
      * @param sqlSessionFactory
      * @return
      */
-    @Bean("mysqlSqlSessionTemplate")
+    @Bean("tdengineSqlSessionTemplate")
     @Primary
-    public SqlSessionTemplate mysqlSqlSessionTemplate(@Qualifier("mysqlSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
+    public SqlSessionTemplate tdengineSqlSessionTemplate(@Qualifier("tdengineSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
@@ -81,10 +81,10 @@ public class HikariMysqlConfig {
      * @return
      */
     //不配值这个bean，@Transaction注解可能失效
-    //使用时 @Transactional(value = "mysqlTransactionManager",rollbackFor = {Exception.class, RuntimeException.class})
-    @Bean("mysqlTransactionManager")
-    public TransactionManager mysqlTransactionManager() {
-        return new JdbcTransactionManager(mysqlDataSource());
+    //使用时 @Transactional(value = "tdengineTransactionManager",rollbackFor = {Exception.class, RuntimeException.class})
+    @Bean("tdengineTransactionManager")
+    public TransactionManager tdengineTransactionManager() {
+        return new JdbcTransactionManager(tdengineDataSource());
     }
 
 }

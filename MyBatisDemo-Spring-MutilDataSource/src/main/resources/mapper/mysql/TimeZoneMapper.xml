@@ -4,4 +4,16 @@
     <select id="selectTimeZoneList" resultType="com.example.mybatisdemospringmutildatasource.domain.TimeZone">
         select * from timezone
     </select>
+
+    <select id="selectTimeZoneLast" resultType="com.example.mybatisdemospringmutildatasource.domain.TimeZone">
+        select * from timezone order by id desc limit 1
+    </select>
+
+    <insert id="insertTimeZone" parameterType="TimeZone">
+        insert into `timezone` values (#{id}, #{birthday}, #{A_B}, #{num})
+    </insert>
+
+    <insert id="insertTZ" parameterType="TZ">
+        insert into `timezone` values (#{id}, #{birthday}, #{A_B}, #{num})
+    </insert>
 </mapper>

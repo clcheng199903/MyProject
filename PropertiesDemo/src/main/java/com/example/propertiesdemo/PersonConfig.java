@@ -19,16 +19,16 @@ public class PersonConfig {
     private Integer age;
     private String sex;
 
-    @Resource
-    private Person person;
-
     @Bean
-    @ConditionalOnProperty(name = "nation", havingValue = "China")
-    public Person getPerson() {
-        return person;
+    @ConditionalOnProperty(name = "person.nation", havingValue = "China")
+    public PersonConfig getPersonConfig() {
+        return this;
     }
+
     @PostConstruct
     public void print() {
-      log.info(this.toString());
+        log.info(this.toString());
+//        String property = SpringUtils.getProperty("person.nation");
+//        log.info(property);
     }
 }

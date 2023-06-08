@@ -1,9 +1,10 @@
 spring:
   datasource:
+    # &serverTimezone=UTC
     #第一数据源
     mysql:
       driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://www.clcheng.asia:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&autoReconnect=true
+      jdbcUrl: jdbc:mysql://www.clcheng.asia:3306/test?characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&autoReconnect=true
       type: com.zaxxer.hikari.HikariDataSource
       username: root
       password: Ustb@701
@@ -45,6 +46,22 @@ spring:
       poolName: HikariPool_oracle
       maxLifetime: 1800000
       connectionTestQuery: SELECT 1 FROM DUAL
+
+    #第四数据源
+    tdengine:
+      driverClassName: com.taosdata.jdbc.TSDBDriver
+      jdbcUrl: jdbc:TAOS://www.clcheng.asia:6030/test
+      type: com.zaxxer.hikari.HikariDataSource
+      username: root
+      password: taosdata
+      initialSize: 5
+      maxActive: 10
+      minIdle: 5
+      maximumPoolSize: 10
+      autoCommit: true
+      poolName: HikariPool_tdengine
+      maxLifetime: 1800000
+      connectionTestQuery: SELECT SERVER_STATUS()
 
 #      # 初始连接数
 #      initialSize: 5

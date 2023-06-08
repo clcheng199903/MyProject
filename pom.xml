@@ -23,6 +23,10 @@
         <module>ExceptionDemo</module>
         <module>ThreadPoolDemo</module>
         <module>LoggerDemo</module>
+        <module>JDBCTemplateDemo-Spring</module>
+        <module>Formatter</module>
+        <module>TypeInfoDemo</module>
+        <module>MiloDemo</module>
     </modules>
 
     <properties>
