@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RecordMapper {
-    List<Record> selectRecordList();
+    List<Record> selectRecordList(String table);
 
     int insertRecord(String table, Timestamp ts, double value);
 }

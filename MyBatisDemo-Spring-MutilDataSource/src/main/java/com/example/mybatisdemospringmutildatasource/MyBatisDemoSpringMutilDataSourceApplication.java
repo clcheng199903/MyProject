@@ -47,7 +47,7 @@ public class MyBatisDemoSpringMutilDataSourceApplication {
     @Resource
     private BMMSM21Mapper bmmsm21Mapper;
 
-    @PostConstruct
+//    @PostConstruct
     public void production() {
         BMMSM21 bmmsm21 = new BMMSM21();
         bmmsm21.setREC_CREATE_TIME("20230609004712");
@@ -63,21 +63,21 @@ public class MyBatisDemoSpringMutilDataSourceApplication {
     }
 
 
-//    @PostConstruct
+    @PostConstruct
     public void init() {
-        List<TimeZone> timeZones = timeZoneMapper.selectTimeZoneList();
-        log.info("TimeZone Size: {}", timeZones.size());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        TZ tz = new TZ(timeZones.size() + 1, dateFormat.format(new Date()), null, null);
-        int i = timeZoneMapper.insertTZ(tz);
-        TimeZone timeZone = timeZoneMapper.selectTimeZoneLast();
-        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        log.info("最新的记录时间：{}", dateFormat1.format(timeZone.getBirthday()));
+//        List<TimeZone> timeZones = timeZoneMapper.selectTimeZoneList();
+//        log.info("TimeZone Size: {}", timeZones.size());
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//        TZ tz = new TZ(timeZones.size() + 1, dateFormat.format(new Date()), null, null);
+//        int i = timeZoneMapper.insertTZ(tz);
+//        TimeZone timeZone = timeZoneMapper.selectTimeZoneLast();
+//        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//        log.info("最新的记录时间：{}", dateFormat1.format(timeZone.getBirthday()));
 //
 //        TimeZone timeZone = new TimeZone();
 //        timeZone.setId(timeZones.size() + 1);
 //        int i = timeZoneMapper.insertTimeZone(timeZone);
-        log.info("插入TimeZone表成功{}", i);
+//        log.info("插入TimeZone表成功{}", i);
 //
 //        List<Person> people = personMapper.selectPersonList();
 //        log.info("Person list size: {}", people.size());
@@ -88,15 +88,16 @@ public class MyBatisDemoSpringMutilDataSourceApplication {
         /**
          * 查询正常
          */
-//        List<Record> records = recordMapper.selectRecordList();
-//        Record record = new Record();
-//        record.setTs(new Date());
-//        record.setValue(100.0);
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-//        String ts = dateFormat.format(record.getTs());
-//        log.info(ts);
-//        int i1 = recordMapper.insertRecord("tb_db_1001", dateToTimeStamp(record.getTs()), record.getValue());
-//        log.info("tdengine size: {}, 插入：{}条, record: {}", records.size(), i1, record);
+        String table = "CC01S2.BilletLength";
+        List<Record> records = recordMapper.selectRecordList(table);
+        Record record = new Record();
+        record.setTs(new Date());
+        record.setValue(100.0);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String ts = dateFormat.format(record.getTs());
+        log.info(ts);
+        int i1 = recordMapper.insertRecord(table, dateToTimeStamp(record.getTs()), record.getValue());
+        log.info("tdengine size: {}, 插入：{}条, record: {}", records.size(), i1, record);
     }
     
     private Timestamp dateToTimeStamp(Date date) {
