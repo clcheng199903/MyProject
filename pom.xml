@@ -27,6 +27,8 @@
         <module>Formatter</module>
         <module>TypeInfoDemo</module>
         <module>MiloDemo</module>
+        <module>BlockingQueueDemo</module>
+        <module>ThreadLocalDemo</module>
     </modules>
 
     <properties>

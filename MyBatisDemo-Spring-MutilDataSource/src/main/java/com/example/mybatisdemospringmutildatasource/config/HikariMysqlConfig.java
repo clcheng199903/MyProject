@@ -1,6 +1,8 @@
 package com.example.mybatisdemospringmutildatasource.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.ibatis.logging.slf4j.Slf4jImpl;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -25,6 +27,8 @@ import javax.sql.DataSource;
 public class HikariMysqlConfig {
     /**
      * @ConfigurationProperties 读取yml中的配置参数映射成一个对象，并传给new HikariDataSource()做数据源
+     *
+     * 这是数据源的属性，spring.datasource
      */
     @Bean(name = "mysqlDataSource")
     @Primary
@@ -40,6 +44,8 @@ public class HikariMysqlConfig {
      * 3.显式的Mapper.java类扫描配置，@MapperScan
      * @param dataSource
      * @return
+     *
+     * 这是对Mybatis的SqlSession进行的配置, spring.mybatis
      */
     // bean也会初始化，所以也有参数注入的过程，通过@Qualifier指定bean类型
     @Bean(name = "mysqlSqlSessionFactory")
@@ -49,7 +55,12 @@ public class HikariMysqlConfig {
         bean.setDataSource(dataSource);
 
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
-        configuration.setMapUnderscoreToCamelCase(false);
+        configuration.setMapUnderscoreToCamelCase(true);
+        configuration.setUseGeneratedKeys(true);
+        configuration.setCacheEnabled(true);
+        configuration.setDefaultExecutorType(ExecutorType.SIMPLE);
+        configuration.setLogImpl(Slf4jImpl.class);
+
 
         // configuration配置
         bean.setConfiguration(configuration);

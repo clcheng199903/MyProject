@@ -1,6 +1,8 @@
 package com.example.mybatisdemospringmutildatasource.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.ibatis.logging.slf4j.Slf4jImpl;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -52,14 +54,19 @@ public class HikariSqlServerConfig {
 
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
         configuration.setMapUnderscoreToCamelCase(true);
+        configuration.setUseGeneratedKeys(true);
+        configuration.setCacheEnabled(true);
+        configuration.setDefaultExecutorType(ExecutorType.SIMPLE);
+        configuration.setLogImpl(Slf4jImpl.class);
 
         // configuration配置
         bean.setConfiguration(configuration);
 
+        bean.setTypeAliasesPackage("com.example.mybatisdemospringmutildatasource.domain");
+
         // 单路径扫描
         // mybatis扫描mapper.xml所在位置
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/sqlserver/*.xml"));
-        bean.setTypeAliasesPackage("com.example.mybatisdemospringmutildatasource.domain");
         return bean.getObject();
     }
 

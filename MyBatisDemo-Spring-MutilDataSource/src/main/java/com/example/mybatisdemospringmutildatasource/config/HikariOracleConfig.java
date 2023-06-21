@@ -1,6 +1,8 @@
 package com.example.mybatisdemospringmutildatasource.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.ibatis.logging.slf4j.Slf4jImpl;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -49,6 +51,10 @@ public class HikariOracleConfig {
 
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
         configuration.setMapUnderscoreToCamelCase(true);
+        configuration.setUseGeneratedKeys(true);
+        configuration.setCacheEnabled(true);
+        configuration.setDefaultExecutorType(ExecutorType.SIMPLE);
+        configuration.setLogImpl(Slf4jImpl.class);
 
         // configuration配置
         bean.setConfiguration(configuration);

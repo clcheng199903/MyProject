@@ -2,10 +2,8 @@ package com.example.jdbctemplatedemo;
 
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class JDBCTest {
     @Test
@@ -59,5 +57,35 @@ public class JDBCTest {
         if (connection != null){
             connection.close();
         }
+    }
+
+    @Test
+    public void testMysql() throws SQLException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // &serverTimezone=GMT%2B8
+        String url = "jdbc:mysql://www.clcheng.asia:3306/test?characterEncoding=utf8&useSSL=false&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true&autoReconnect=true";
+        Connection connection = DriverManager.getConnection(url, "root", "Ustb@701");
+        Statement statement = connection.createStatement();
+        String sql = "select id, birthday from timezone order by birthday desc limit 1";
+//        Date date = new Date();
+//        String insertSql = "insert into timezone (birthday) values (\"20230620113800\")";
+//        statement.execute(insertSql);
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+//            Timestamp birthday = resultSet.getTimestamp("birthday");
+            Timestamp birthday = resultSet.getTimestamp("birthday");
+//            System.out.println(birthday.getHours());
+//            long ts = birthday.getTime(); // 返回时间戳
+//            java.util.Date date = new java.util.Date(ts);
+//            System.out.println(id + " " + birthday);
+//            System.out.println(date);
+            System.out.println(id + " " + dateFormat.format(birthday));
+        }
+    }
+
+    @Test
+    public void testTimeResolver() {
+
     }
 }
