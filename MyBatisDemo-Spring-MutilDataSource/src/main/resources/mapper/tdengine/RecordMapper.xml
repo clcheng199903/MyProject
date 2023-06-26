@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.mybatisdemospringmutildatasource.mapper.tdengine.RecordMapper">
+
+    <resultMap id="TimeRecordResult" type="Record">
+        <id property="ts" column="ts"/>
+        <result property="value" column="value"/>
+    </resultMap>
+
     <select id="selectRecordList" resultType="com.example.mybatisdemospringmutildatasource.domain.Record">
         select * from `#{table}`
     </select>
@@ -13,4 +19,13 @@
 <!--        insert into test.t#{groupId} (ts, temperature, humidity, note)-->
 <!--        values (#{ts}, ${temperature}, ${humidity}, #{note})-->
 <!--    </insert>-->
+
+    <select id="selectTimeRecordList" resultMap="TimeRecordResult">
+        select ts, value from datacollector.`#{table}` where ts <![CDATA[ < ]]> #{endTime} and ts <![CDATA[ >= ]]> #{startTime}
+    </select>
+
+    <!-- 以插值方式获取指定时序数据 -->
+    <select id="selectTimeRecordListByFill" resultMap="TimeRecordResult">
+        select interp(value) from datacollector.`#{table}` where ts <![CDATA[ < ]]> #{endTime} and ts <![CDATA[ >= ]]> #{startTime} every(200a) fill(PREV)
+    </select>
 </mapper>

@@ -63,7 +63,7 @@ public class MyBatisDemoSpringMutilDataSourceApplication {
     }
 
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
 //        List<TimeZone> timeZones = timeZoneMapper.selectTimeZoneList();
 //        log.info("TimeZone Size: {}", timeZones.size());
@@ -91,12 +91,12 @@ public class MyBatisDemoSpringMutilDataSourceApplication {
         String table = "CC01S2.BilletLength";
         List<Record> records = recordMapper.selectRecordList(table);
         Record record = new Record();
-        record.setTs(new Date());
+        record.setTs(System.currentTimeMillis());
         record.setValue(100.0);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         String ts = dateFormat.format(record.getTs());
         log.info(ts);
-        int i1 = recordMapper.insertRecord(table, dateToTimeStamp(record.getTs()), record.getValue());
+        int i1 = recordMapper.insertRecord(table, record.getTs(), record.getValue());
         log.info("tdengine size: {}, 插入：{}条, record: {}", records.size(), i1, record);
     }
     

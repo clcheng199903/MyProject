@@ -50,7 +50,7 @@ spring:
     #第四数据源
     tdengine:
       driverClassName: com.taosdata.jdbc.TSDBDriver
-      jdbcUrl: jdbc:TAOS://tdengine-server:6030/test
+      jdbcUrl: jdbc:TAOS://tdengine-server:6030/datacollector
       type: com.zaxxer.hikari.HikariDataSource
       username: root
       password: taosdata
