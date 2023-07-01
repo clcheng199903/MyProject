@@ -29,6 +29,7 @@
         <module>MiloDemo</module>
         <module>BlockingQueueDemo</module>
         <module>ThreadLocalDemo</module>
+        <module>OpaUaServerDemo</module>
     </modules>
 
     <properties>
