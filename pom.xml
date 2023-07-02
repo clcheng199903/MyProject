@@ -30,6 +30,7 @@
         <module>BlockingQueueDemo</module>
         <module>ThreadLocalDemo</module>
         <module>OpaUaServerDemo</module>
+        <module>JCEDemo</module>
     </modules>
 
     <properties>

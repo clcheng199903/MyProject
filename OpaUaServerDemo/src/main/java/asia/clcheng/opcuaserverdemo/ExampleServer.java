@@ -19,8 +19,7 @@ import java.util.concurrent.CountDownLatch;
 public class ExampleServer {
 
     private static OpcUaServer server;
-
-    private static CountDownLatch latch = new CountDownLatch(1);
+    private static ExampleNamespace exampleNamespace;
 
     public static void main(String[] args) throws Exception {
         // 配置构建器
@@ -40,10 +39,18 @@ public class ExampleServer {
 
         // 实例化server
         server = new OpcUaServer(opcUaServerConfig);
-        CompletableFuture<OpcUaServer> future = server.startup();
+
+        exampleNamespace = new ExampleNamespace(server);
+        exampleNamespace.startup(); // 执行启动逻辑，这个先于server.startup()
+
+        server.startup();
+
+
+        final CompletableFuture<Void> future = new CompletableFuture<>();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> future.complete(null)));
+
         future.get();
-        printNameSpaceTable();
-        latch.await();
     }
 
     public static void printNameSpaceTable() {
