@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="msg_from_server"></div>
+    <div id="sse"></div>
+
+    <script>
+        const sse = new EventSource("http://localhost:8080/sse"); // 支持断线重连
+        // var sse = new EventSource("http://localhost:8080/sse-retry");
+
+        sse.onmessage = ev => {
+            var el = document.getElementById("sse");
+            el.innerHTML = ev.data;
+        }
+    </script>
+</body>
+</html>
