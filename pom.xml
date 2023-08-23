@@ -33,6 +33,12 @@
         <module>JCEDemo</module>
         <module>JSONDemo</module>
         <module>DateUtilDemo</module>
+        <module>IODemo</module>
+        <module>ClassLoaderDemo</module>
+        <module>JvmDemo</module>
+        <module>RegexDemo</module>
+        <module>AssertionsDemo</module>
+        <module>MockDemo</module>
     </modules>
 
     <properties>

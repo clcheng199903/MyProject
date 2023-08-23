@@ -9,7 +9,7 @@
     <div id="sse"></div>
 
     <script>
-        const sse = new EventSource("http://localhost:8080/sse"); // 支持断线重连
+        const sse = new EventSource("http://localhost:8080/sse-retry"); // 支持断线重连
         // var sse = new EventSource("http://localhost:8080/sse-retry");
 
         sse.onmessage = ev => {

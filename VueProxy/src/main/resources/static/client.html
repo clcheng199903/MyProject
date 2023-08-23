@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE-轻量化服务端消息推送方案</title>
+</head>
+<body>
+    <div>SSE测试</div>
+    <div id="result"></div>
+</body>
+
+<script>
+    // 关闭SSE连接需要给定ClientId
+    // 刷新或关闭页面时都需要断开SSE连接
+    // 只打开不关闭会一直占用着后台资源
+    let clientId;
+    let source = new EventSource('/sse/test/start?id=qwe')
+
+    source.onmessage = (event) => {
+        let text = document.getElementById('result').innerText
+        text = event.data;
+        document.getElementById("result").innerText = text;
+        console.log(event.data);
+        clientId = event.lastEventId; // 获取到客户端Id
+        console.log(clientId); // 打印客户端id
+    }
+
+    source.onerror = (error) => {
+        if (error.readState === EventSource.CLOSED) {
+            console.log("连接关闭");
+        }
+    }
+
+    source.onopen = event => {
+        console.log(event)
+    }
+
+    /**
+     * 刷新页面
+     */
+    window.addEventListener("beforeunload", () => {
+        closeSession();
+    })
+
+    function closeSession() {
+        source.close(); // 前端关闭资源
+        const httpRequest = new XMLHttpRequest(); // 原始js http访问，告诉服务端关闭SSE连接
+        httpRequest.open("GET", "/sse/test/close?clientId=" + clientId, true);
+        httpRequest.send();
+        console.log(clientId + " closed");
+    }
+</script>
+</html>

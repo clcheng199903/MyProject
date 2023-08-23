@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://www.clcheng.asia:3306/jpa
+    username: root
+    password: Ustb@701
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
