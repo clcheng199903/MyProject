@@ -39,6 +39,18 @@
         <module>RegexDemo</module>
         <module>AssertionsDemo</module>
         <module>MockDemo</module>
+        <module>JPADemo</module>
+        <module>Neo4j</module>
+        <module>AsyncDemo-Spring</module>
+        <module>Authorization</module>
+        <module>PropertiesDemo</module>
+        <module>MyBatisDemo-Spring-MutilDataSource</module>
+        <module>SchedulerDemo-Spring</module>
+        <module>SpringSecurityDemo</module>
+        <module>SSEDemo</module>
+        <module>STD-Spring</module>
+        <module>VueProxy</module>
+        <module>WSDemo</module>
     </modules>
 
     <properties>

@@ -1,0 +1,7 @@
+spring:
+  # 自动创建neo4j的DataSource
+  neo4j:
+    uri: bolt://www.clcheng.asia:7687
+    authentication:
+      username: neo4j
+      password: secret

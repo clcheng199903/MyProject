@@ -8,17 +8,17 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>JPADemo</artifactId>
+    <artifactId>Neo4j</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>JPADemo</name>
-    <description>JPADemo</description>
+    <name>Neo4j</name>
+    <description>Neo4j</description>
     <properties>
         <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -27,12 +27,21 @@
             <scope>test</scope>
         </dependency>
 
+<!--        引入neo4j starter依赖，底层是spring-data-neo4j 7以及neo4j-cypher-dsl(领域专用语言) -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-neo4j</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
